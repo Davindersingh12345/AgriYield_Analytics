@@ -7,9 +7,21 @@ _client = None
 def get_db():
     global _client
     if _client is None:
-        uri = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-        _client = MongoClient(uri, serverSelectionTimeoutMS=3000)
-    return _client[os.getenv("MONGO_DB", "agriyield_db")]
+        uri = os.getenv("MONGO_URI")
+
+        if not uri:
+            raise RuntimeError(
+                "MONGO_URI environment variable is not configured"
+            )
+
+        _client = MongoClient(
+            uri,
+            serverSelectionTimeoutMS=10000,
+            connectTimeoutMS=10000
+        )
+
+    db_name = os.getenv("MONGO_DB", "agriyield_db")
+    return _client[db_name]
 
 def ensure_indexes(db):
     crops = db.crops
