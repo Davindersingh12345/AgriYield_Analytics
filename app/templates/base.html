@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}AgriYield Analytics{% endblock %}</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <aside class="sidebar">
+        <a class="brand" href="{{ url_for('dashboard') }}">
+            <span class="brand-icon">🌾</span>
+            <span>
+                AgriYield
+                <small>ANALYTICS</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="{{ url_for('dashboard') }}">▦ <span>Dashboard</span></a>
+            <a href="{{ url_for('records') }}">▤ <span>Crop records</span></a>
+            <a href="{{ url_for('add_record') }}">＋ <span>Add record</span></a>
+            <a href="{{ url_for('import_data') }}">⇧ <span>Import dataset</span></a>
+            <a href="{{ url_for('predict') }}">⌁ <span>Yield prediction</span></a>
+            <a href="{{ url_for('query_lab') }}">⌘ <span>Aggregation lab</span></a>
+        </nav>
+
+        <div class="sidebar-foot">
+            MongoDB · Flask · ML<br>
+            <small>College mini project</small>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <div class="eyebrow">AGRICULTURE INTELLIGENCE</div>
+                <h1>{% block heading %}Dashboard{% endblock %}</h1>
+            </div>
+            <div class="status">
+                <span class="dot"></span>
+                Local analytics workspace
+            </div>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <section class="flash-list">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+        <footer>
+            AgriYield Analytics · Educational project · Verify predictions
+            before real-world use
+        </footer>
+    </main>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

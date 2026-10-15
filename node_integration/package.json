@@ -1,0 +1,1 @@
+{"name":"agriyield-mongoose-demo","version":"1.0.0","private":true,"description":"Optional Node.js/Mongoose integration example for AgriYield Analytics","main":"app.js","scripts":{"start":"node app.js"},"dependencies":{"mongoose":"^8.0.0","dotenv":"^16.0.0"}}

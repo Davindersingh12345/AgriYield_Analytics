@@ -1,0 +1,7 @@
+Rows used: 19689
+Features: Crop, Crop_Year, Season, State, Area, Annual_Rainfall, Fertilizer, Pesticide
+MAE: 11.845535
+RMSE: 169.327877
+R2: 0.964216
+
+Note: Yield values have a wide range in the supplied data. Metrics are a baseline and should be interpreted alongside crop-specific validation.
